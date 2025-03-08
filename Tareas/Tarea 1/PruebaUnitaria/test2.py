@@ -1,6 +1,6 @@
 import unittest
 from pruebaDos import calcular_puntajes
-
+from Funciones.FuncionDos import calcular_puntajes
 class TestCalculoPuntajes(unittest.TestCase):
     
     def test_caso_usuario(self):
