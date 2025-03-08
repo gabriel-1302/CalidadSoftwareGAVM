@@ -1,0 +1,280 @@
+{% extends 'calculadora_puntajes/base.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+    function resetForm() {
+        // Resetear todos los inputs numéricos
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.value = 0;
+        });
+        
+        // Resetear todos los campos de resultados
+        document.querySelectorAll('input[type="text"][readonly]').forEach(input => {
+            input.value = 0;
+        });
+    }
+</script>
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        color: #2c3e50;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 2rem;
+    }
+
+    .form-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .table-form {
+        margin: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .table-form thead {
+        background: #34495e;
+    }
+
+    .table-form th {
+        font-size: 1.1rem;
+        padding: 1.2rem;
+        vertical-align: middle;
+        border: none;
+        color: rgb(0, 0, 0);
+    }
+
+    .table-form td {
+        padding: 1.2rem;
+        vertical-align: middle;
+        background: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table-form tr:nth-child(even) td {
+        background: #f1f3f5;
+    }
+
+    .table-form input[type="number"],
+    .table-form input[type="text"] {
+        transition: all 0.3s ease;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+    }
+
+    .table-form input[type="number"]:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-calculate {
+        widmax-width: 250px;
+        margin: 1.5rem auto;
+        display: block;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        background: #3498db;
+        border: none;
+        letter-spacing: 1px;
+    }
+
+    .btn-calculate:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    .category-title {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        background: #2c3e50;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container">
+    <h2>Sistema de Cálculo de Méritos Académicos</h2>
+    
+    <form method="post" class="form-card p-4">
+        {% csrf_token %}
+        
+        <table class="table table-form">
+            <thead>
+                <tr>
+                    <th style="background-color: #cdcdcd;">
+                        A. Formacion Academica
+                    </th>
+                </tr>
+                <tr>
+                    <th>PARÁMETROS DE EVALUACIÓN</th>
+                    <th>CANTIDAD</th>
+                    <th>PUNTAJE</th>
+                    <th>MÁX.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Diplomado: 2 puntos base + 1 por adicional</td>
+                    <td><input type="number" name="diplomados" class="form-control" min="0" value="{{ form.diplomados.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.0|default:0 }}" class="form-control" readonly></td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Especialidad: 4 puntos base + 2 por adicional</td>
+                    <td><input type="number" name="especialidades" class="form-control" min="0" value="{{ form.especialidades.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.1|default:0 }}" class="form-control" readonly></td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>Maestría: 8 puntos base + 3 por adicional</td>
+                    <td><input type="number" name="maestrias" class="form-control" min="0" value="{{ form.maestrias.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.2|default:0 }}" class="form-control" readonly></td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>Doctorado: 12 puntos fijos</td>
+                    <td><input type="number" name="doctorados" class="form-control" min="0" value="{{ form.doctorados.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.3|default:0 }}" class="form-control" readonly></td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right font-weight-bold">Subtotal (Máximo 12 puntos)</td>
+                    <td colspan="2"><input type="text" value="{{ resultados.4|default:0 }}" class="form-control font-weight-bold text-primary" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-form">
+            <thead>
+                <tr>
+                    <th style="background-color: #cdcdcd;">
+                        B. Actualización Académica
+                    </th>
+                </tr>
+                <tr>
+                    <th>PARÁMETROS DE EVALUACIÓN</th>
+                    <th>CANTIDAD</th>
+                    <th>PUNTAJE</th>
+                    <th>MÁX.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Asistencia a programas, cursos, seminarios, talleres y congresos relacionados al área de Derecho: 0.5 puntos por evento</td>
+                    <td><input type="number" name="actualizacion" class="form-control" min="0" value="{{ form.actualizacion.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.5|default:0 }}" class="form-control" readonly></td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right font-weight-bold">Subtotal Actualización Académica</td>
+                    <td><input type="text" value="{{ resultados.6|default:0 }}" class="form-control font-weight-bold text-primary" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-form">
+            <thead>
+                <tr>
+                    <th style="background-color: #cdcdcd;">
+                        C. Experiencia Profesional
+                    </th>
+                </tr>
+                <tr>
+                    <th>PARÁMETROS DE EVALUACIÓN</th>
+                    <th>CANTIDAD</th>
+                    <th>PUNTAJE</th>
+                    <th>MÁX.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Antigüedad en el ejercicio de la abogacía (1 punto por año)</td>
+                    <td><input type="number" name="antiguedad" class="form-control" min="0" value="{{ form.antiguedad.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.7|default:0 }}" class="form-control" readonly></td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>2. Experiencia como servidor público (1 punto por año)</td>
+                    <td><input type="number" name="publica" class="form-control" min="0" value="{{ form.publica.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.8|default:0 }}" class="form-control" readonly></td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>3. Como docente universitario (2 puntos/año)</td>
+                    <td><input type="number" name="docente" class="form-control" min="0" value="{{ form.docente.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.9|default:0 }}" class="form-control" readonly></td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right font-weight-bold">Subtotal Experiencia Profesional</td>
+                    <td><input type="text" value="{{ resultados.10|default:0 }}" class="form-control font-weight-bold text-primary" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-form">
+            <thead>
+                <tr>
+                    <th style="background-color: #cdcdcd;">
+                        D. Producción Intelectual
+                    </th>
+                </tr>
+                <tr>
+                    <th>PARÁMETROS DE EVALUACIÓN</th>
+                    <th>CANTIDAD</th>
+                    <th>PUNTAJE</th>
+                    <th>MÁX.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1. Articulos publicados vinculados al área juridical(1 punto por cada articulo, max. 2 articulos)</td>
+                    <td><input type="number" name="articulos_publicados" class="form-control" min="0" value="{{ form.articulos_publicados.value|default:0 }}"></td>
+                    <td><input type="text" value="{{ resultados.11|default:0 }}" class="form-control" readonly></td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right font-weight-bold">Subtotal Producción Intelectual</td>
+                    <td><input type="text" value="{{ resultados.12|default:0 }}" class="form-control font-weight-bold text-primary" readonly></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>PUNTAJE TOTAL</strong>
+                    </td>
+                </tr>
+            </tbody>
+            <td>{{ total_puntajes }}</td>
+        </table>
+        
+
+        
+        
+        <button type="submit" class="btn btn-calculate">
+            CALCULAR PUNTAJE TOTAL
+        </button>
+        <button type="button" class="btn btn-danger" onclick="resetForm()" 
+                    style="padding: 0.8rem 1.5rem; font-size: 1.1rem; letter-spacing: 1px;">
+                BORRAR TODO
+        </button>
+    </form>
+</div>
+{% endblock %}

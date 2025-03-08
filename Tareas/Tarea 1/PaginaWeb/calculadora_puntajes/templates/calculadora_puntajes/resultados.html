@@ -1,0 +1,57 @@
+{% extends 'calculadora_puntajes/base.html' %}
+
+{% block content %}
+<style>
+    /* Mantener estilos anteriores y agregar: */
+    .result-table {
+        table-layout: fixed;
+    }
+    
+    .result-table th,
+    .result-table td {
+        width: 20%;
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+    
+    .result-table th:last-child,
+    .result-table td:last-child {
+        width: 20%;
+    }
+</style>
+
+<div class="result-card">
+    <div class="result-header">
+        <h5>RESULTADOS OFICIALES</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table result-table">
+                <thead>
+                    <tr>
+                        <th>Diplomados</th>
+                        <th>Especialidades</th>
+                        <th>Maestrías</th>
+                        <th>Doctorados</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ resultados.0 }}</td>
+                        <td>{{ resultados.1 }}</td>
+                        <td>{{ resultados.2 }}</td>
+                        <td>{{ resultados.3 }}</td>
+                        <td class="highlight-subtotal">{{ resultados.4 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-alert">
+            <strong>Nota:</strong> El cálculo sigue la jerarquía académica establecida:<br>
+            Doctorado (12) → Maestría (11) → Especialidad (6) → Diplomado (4)
+        </div>
+    </div>
+</div>
+{% endblock %}
