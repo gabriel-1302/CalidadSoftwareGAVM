@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Persona{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-6">Editar Persona</h1>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <label for="carnet" class="block text-sm font-medium text-gray-700">Carnet</label>
+                <input type="text" name="carnet" id="carnet" value="{{ persona.carnet }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+            
+            <div class="space-y-2">
+                <label for="nombres" class="block text-sm font-medium text-gray-700">Nombres</label>
+                <input type="text" name="nombres" id="nombres" value="{{ persona.nombres }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+            
+            <div class="space-y-2">
+                <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
+                <input type="text" name="apellidos" id="apellidos" value="{{ persona.apellidos }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+            
+            <div class="space-y-2">
+                <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
+                <select name="sexo" id="sexo" required 
+                        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    <option value="M" {% if persona.sexo == 'M' %}selected{% endif %}>Masculino</option>
+                    <option value="F" {% if persona.sexo == 'F' %}selected{% endif %}>Femenino</option>
+                </select>
+            </div>
+            
+            <div class="space-y-2">
+                <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ persona.fecha_nacimiento }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+            
+            <div class="space-y-2">
+                <label for="profesion" class="block text-sm font-medium text-gray-700">Profesión</label>
+                <input type="text" name="profesion" id="profesion" value="{{ persona.profesion }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+            
+            <div class="space-y-2">
+                <label for="celular" class="block text-sm font-medium text-gray-700">Celular</label>
+                <input type="text" name="celular" id="celular" value="{{ persona.celular }}" required 
+                       class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </div>
+        </div>
+        
+        <div class="space-y-2">
+            <label for="direccion" class="block text-sm font-medium text-gray-700">Dirección</label>
+            <textarea name="direccion" id="direccion" rows="3" required 
+                      class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">{{ persona.direccion }}</textarea>
+        </div>
+        
+        <div class="flex justify-end space-x-2 pt-4">
+            <a href="{% url 'personas_ui:persona_list' %}" 
+               class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">
+                Cancelar
+            </a>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                Actualizar
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

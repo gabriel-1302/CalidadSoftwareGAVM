@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de Personas{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-6">Listado de Personas</h1>
+
+    <div class="mb-4">
+        <input type="text" id="search" placeholder="Buscar por nombre o carnet..." 
+               class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+    </div>
+
+    {% if personas %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 border-b text-left">Carnet</th>
+                        <th class="py-2 px-4 border-b text-left">Nombres</th>
+                        <th class="py-2 px-4 border-b text-left">Apellidos</th>
+                        <th class="py-2 px-4 border-b text-left">Profesión</th>
+                        <th class="py-2 px-4 border-b text-left">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="personas-tabla">
+                    {% for persona in personas %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-2 px-4 border-b">{{ persona.carnet }}</td>
+                        <td class="py-2 px-4 border-b">{{ persona.nombres }}</td>
+                        <td class="py-2 px-4 border-b">{{ persona.apellidos }}</td>
+                        <td class="py-2 px-4 border-b">{{ persona.profesion }}</td>
+                        <td class="py-2 px-4 border-b">
+                            <div class="flex space-x-2">
+                                <a href="{% url 'personas_ui:persona_detail' persona.carnet %}" 
+                                   class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded text-xs">
+                                    Ver
+                                </a>
+                                <a href="{% url 'personas_ui:persona_edit' persona.carnet %}" 
+                                   class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-2 rounded text-xs">
+                                    Editar
+                                </a>
+                                <a href="{% url 'personas_ui:persona_delete' persona.carnet %}" 
+                                   class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded text-xs">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="text-center py-8 text-gray-500">
+            No hay personas registradas en el sistema.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Función para filtrar la tabla según el término de búsqueda
+    document.getElementById('search').addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const rows = document.getElementById('personas-tabla').getElementsByTagName('tr');
+        
+        for (let i = 0; i < rows.length; i++) {
+            const carnet = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+            const nombres = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+            const apellidos = rows[i].getElementsByTagName('td')[2].textContent.toLowerCase();
+            const profesion = rows[i].getElementsByTagName('td')[3].textContent.toLowerCase();
+            
+            if (carnet.includes(searchTerm) || 
+                nombres.includes(searchTerm) || 
+                apellidos.includes(searchTerm) || 
+                profesion.includes(searchTerm)) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    });
+</script>
+{% endblock %}

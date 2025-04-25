@@ -1,0 +1,299 @@
+{
+  "id": "1f8c3826-f518-4f3a-bdf4-36669d997294",
+  "version": "2.0",
+  "name": "CrudPersonas",
+  "url": "http://127.0.0.1:8001",
+  "tests": [{
+    "id": "8aed5c1f-1949-476f-9ebb-414beec26b87",
+    "name": "Prueba 1",
+    "commands": [{
+      "id": "4f332134-8c61-44f0-b2ad-6a414cb6a5fc",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "89f11fbc-61a7-412a-af92-ebf210408209",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1550x830",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "240e5c7e-548a-4b5c-a866-d11c3e9456aa",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nueva Persona",
+      "targets": [
+        ["linkText=Nueva Persona", "linkText"],
+        ["css=.bg-blue-700", "css:finder"],
+        ["xpath=//a[contains(text(),'Nueva Persona')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/crear/')]", "xpath:href"],
+        ["xpath=//div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Nueva Persona')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd5ca7cf-272b-4bd0-97d0-f62726c14dd1",
+      "comment": "",
+      "command": "click",
+      "target": "id=carnet",
+      "targets": [
+        ["id=carnet", "id"],
+        ["name=carnet", "name"],
+        ["css=#carnet", "css:finder"],
+        ["xpath=//input[@id='carnet']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ee64616-f1af-4b0c-8279-375600d3edf0",
+      "comment": "",
+      "command": "type",
+      "target": "id=carnet",
+      "targets": [
+        ["id=carnet", "id"],
+        ["name=carnet", "name"],
+        ["css=#carnet", "css:finder"],
+        ["xpath=//input[@id='carnet']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "10408922"
+    }, {
+      "id": "7e5f9928-5739-4b8b-adcc-cdeb0fd0b0a4",
+      "comment": "",
+      "command": "click",
+      "target": "id=apellidos",
+      "targets": [
+        ["id=apellidos", "id"],
+        ["name=apellidos", "name"],
+        ["css=#apellidos", "css:finder"],
+        ["xpath=//input[@id='apellidos']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7b631ed-1a64-4ab8-a289-5b5af5a3bc67",
+      "comment": "",
+      "command": "type",
+      "target": "id=apellidos",
+      "targets": [
+        ["id=apellidos", "id"],
+        ["name=apellidos", "name"],
+        ["css=#apellidos", "css:finder"],
+        ["xpath=//input[@id='apellidos']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Velasquez Mendia"
+    }, {
+      "id": "59a1b502-e125-4c4b-a73d-69ccf8e60a29",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombres",
+      "targets": [
+        ["id=nombres", "id"],
+        ["name=nombres", "name"],
+        ["css=#nombres", "css:finder"],
+        ["xpath=//input[@id='nombres']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a951365e-9451-49d8-a99f-0c5f2205a5d2",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombres",
+      "targets": [
+        ["id=nombres", "id"],
+        ["name=nombres", "name"],
+        ["css=#nombres", "css:finder"],
+        ["xpath=//input[@id='nombres']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Gabriel Adrian"
+    }, {
+      "id": "541312ee-fe1c-4cf8-a0da-11e837219dfa",
+      "comment": "",
+      "command": "select",
+      "target": "id=sexo",
+      "targets": [],
+      "value": "label=Masculino"
+    }, {
+      "id": "9e9c266a-9b9a-49bb-93b7-05213052b064",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='M']", "xpath:attributes"],
+        ["xpath=//select[@id='sexo']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Masculino')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2783b08f-2707-4d8a-9e6b-0745411970de",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha_nacimiento",
+      "targets": [
+        ["id=fecha_nacimiento", "id"],
+        ["name=fecha_nacimiento", "name"],
+        ["css=#fecha_nacimiento", "css:finder"],
+        ["xpath=//input[@id='fecha_nacimiento']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c6a83fb-babf-4185-8923-a7c39b38290c",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha_nacimiento",
+      "targets": [
+        ["id=fecha_nacimiento", "id"],
+        ["name=fecha_nacimiento", "name"],
+        ["css=#fecha_nacimiento", "css:finder"],
+        ["xpath=//input[@id='fecha_nacimiento']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4779ce75-2756-47cb-a333-d84db7f85203",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-white",
+      "targets": [
+        ["css=.bg-white", "css:finder"],
+        ["xpath=//main/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5bd5337-c4f7-4468-8bc7-2cf847071f49",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha_nacimiento",
+      "targets": [
+        ["id=fecha_nacimiento", "id"],
+        ["name=fecha_nacimiento", "name"],
+        ["css=#fecha_nacimiento", "css:finder"],
+        ["xpath=//input[@id='fecha_nacimiento']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "92b60b9b-1b75-426a-b340-c4e2493873eb",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha_nacimiento",
+      "targets": [
+        ["id=fecha_nacimiento", "id"],
+        ["name=fecha_nacimiento", "name"],
+        ["css=#fecha_nacimiento", "css:finder"],
+        ["xpath=//input[@id='fecha_nacimiento']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "2003-02-13"
+    }, {
+      "id": "a0fc8265-59cc-459c-8324-7bc1fbe3cddc",
+      "comment": "",
+      "command": "click",
+      "target": "id=celular",
+      "targets": [
+        ["id=celular", "id"],
+        ["name=celular", "name"],
+        ["css=#celular", "css:finder"],
+        ["xpath=//input[@id='celular']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de8a8b72-a4b0-47ea-a741-b22f7529e897",
+      "comment": "",
+      "command": "type",
+      "target": "id=celular",
+      "targets": [
+        ["id=celular", "id"],
+        ["name=celular", "name"],
+        ["css=#celular", "css:finder"],
+        ["xpath=//input[@id='celular']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "62892056"
+    }, {
+      "id": "75bbd6fa-5de5-429f-9921-47e26e3ac4d5",
+      "comment": "",
+      "command": "click",
+      "target": "id=profesion",
+      "targets": [
+        ["id=profesion", "id"],
+        ["name=profesion", "name"],
+        ["css=#profesion", "css:finder"],
+        ["xpath=//input[@id='profesion']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "65ce018c-d352-4806-bbda-49c5c1ad3022",
+      "comment": "",
+      "command": "type",
+      "target": "id=profesion",
+      "targets": [
+        ["id=profesion", "id"],
+        ["name=profesion", "name"],
+        ["css=#profesion", "css:finder"],
+        ["xpath=//input[@id='profesion']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "Estudiante"
+    }, {
+      "id": "b3a87426-c0f0-430c-a6ac-18e3d187f2a5",
+      "comment": "",
+      "command": "click",
+      "target": "id=direccion",
+      "targets": [
+        ["id=direccion", "id"],
+        ["name=direccion", "name"],
+        ["css=#direccion", "css:finder"],
+        ["xpath=//textarea[@id='direccion']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b977dab0-e103-4992-bb1d-705fd58500e8",
+      "comment": "",
+      "command": "type",
+      "target": "id=direccion",
+      "targets": [
+        ["id=direccion", "id"],
+        ["name=direccion", "name"],
+        ["css=#direccion", "css:finder"],
+        ["xpath=//textarea[@id='direccion']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Calle Junin numero 234"
+    }, {
+      "id": "09f313c4-e394-4714-8d83-4a3644c2817d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.hover\\3A bg-blue-700",
+      "targets": [
+        ["css=.hover\\3A bg-blue-700", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Guardar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3dad5f13-9cbe-41ef-86d9-960b955e2623",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["8aed5c1f-1949-476f-9ebb-414beec26b87"]
+  }],
+  "urls": ["http://127.0.0.1:8001/"],
+  "plugins": []
+}
